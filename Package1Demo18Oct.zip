@@ -1,1 +1,34 @@
-decodedString
+   /**
+     * Added by Danish
+     * Dated: 07.07.2023
+     *  @descriptions Commit metedata to Git.
+     */
+       @AuraEnabled
+    public static Integer GitCommit(String fileName, String fileBlobBody, String commentTextValue) {
+        HttpRequest req = new HttpRequest();
+        Http http = new Http();
+        String endpoint = 'https://api.github.com/repos/danish0627/TestRepo/contents/' + fileName;
+        req.setEndpoint(endpoint);
+        req.setMethod('PUT');
+        String Gitbytoken = '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';
+        String authorizationHeader = 'Bearer ' + Gitbytoken; 
+        req.setHeader('Authorization', authorizationHeader);
+        req.setHeader('Content-Type', 'application/json');
+        Blob blFileBody= Blob.valueOf(fileBlobBody);
+        String bodyConvertEn = EncodingUtil.base64Encode(blFileBody);
+        String bodyConvert = '{' +
+            +'"message": "' + commentTextValue + '",' +
+            +'"content": "' + bodyConvertEn + '"' +
+            '}';
+        req.setBody(bodyConvert);
+        HTTPResponse res = http.send(req);
+        Integer statusCode = res.getStatusCode();
+        string statusVal = res.getStatus();
+        System.debug('statuscode->>>'+statusVal);
+        List < String > strStatusList = new List < String > ();
+        Boolean Status = (statusCode == 201) ? true : false;
+        commentTextValue = '';
+        strStatusList.add(statusVal);
+        strStatusList.add(String.valueOf(statusCode));
+        return statusCode;    
+    }
