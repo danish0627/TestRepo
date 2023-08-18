@@ -1,0 +1,29 @@
+<aura:component controller="AccountHandler" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId" access="global" >
+    <aura:attribute name="acctList" type="List" description="Store the value of Account List"/>
+    <aura:attribute name="mycolumns" type="List"/>
+    
+    <aura:handler name="init" value="{!this}" action="{!c.fetchAcc}"/>
+    <div class="slds-grid slds-wrap"></div>
+    <div class="slds-text-align_left slds-col slds-size_1-of-2">
+        <lightning:card title= "Create Account" iconName="standard:account">
+            <div class="slds-p-horizontal_xx-large">
+                <lightning:input name="accName" label="Account Name" value="{!v.acctList.Name}"/>
+                <lightning:input name="accPhone" label="Phone" value="{!v.acctList.Phone}" />
+                <lightning:input name="accwebsite" label="Website" value="{!v.acctList.Website}" />
+            </div>
+            <div class="slds-text-align_center slds-m-top_small">
+                <lightning:button variant ="brand" label="Save" title="Create" onclick="{!c.CreateAccount}"/>
+            </div>
+        </lightning:card>
+    </div>    
+    
+    
+    <lightning:card title= "Account Records">
+        <lightning:datatable data="{! v.acctList }"
+                             columns="{! v.mycolumns }"
+                             keyField="Id"
+                             hideCheckboxColumn="true"/>
+    </lightning:card>
+    
+    
+</aura:component>
