@@ -1,0 +1,28 @@
+<!-- Ticket No - EMEA-198 Updating API Version -->
+<apex:page standardController="Event_Edition__c" extensions="Rebook_Event_Edition_Ctrl" docType="html-5.0" >
+    <head>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" ></script>
+    </head>
+    <html>
+    <apex:form >
+    <div class="modal-footer" >
+    <center>
+        <apex:variable var="foo" rendered="{!!bWarnMsg}" value="1">
+            <p>Do you want to Rebook Opportunities of previous Event Edition ?</p>
+        </apex:variable>
+      <apex:pageMessages id="msg"></apex:pageMessages>
+    </center> 
+    </div>
+    <div class="modal-footer">
+      <center> 
+        <apex:commandButton Id="btn1" rendered="{!!bWarnMsg}" action="{!rebookEE}" value="Yes" Styleclass="btn btn-info"  style="background: #8db1bb; width: 164px; font-size: 19px;"></apex:commandButton>
+        <apex:commandButton Id="btn2" rendered="{!!bWarnMsg}" action="{!returnToPP}" value="No" Styleclass="btn btn-info"  style="background: #8db1bb; width: 164px; font-size: 19px;"></apex:commandButton>
+        <apex:commandButton Id="btn3" rendered="{!bWarnMsg}" action="{!returnToPP}" value="Back To Event Edition" Styleclass="btn btn-info"  style="background: #8db1bb; width: 220px; font-size: 19px;"></apex:commandButton>
+        
+        </center> 
+    </div>
+    </apex:form>
+    </html>
+    </apex:page>
