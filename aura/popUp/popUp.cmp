@@ -1,0 +1,40 @@
+<aura:component>
+    <aura:attribute name="showPopup" type="Boolean" default="false"/>
+    <aura:attribute name="input3" type="String" default=""/>
+    <lightning:button label="Show Popup" onclick="{!c.showPopup}"/>
+    <aura:if isTrue="{!v.showPopup}">
+    <div class="slds-backdrop slds-backdrop_open"></div>
+    <section role="dialog" tabindex="-1" aria-labelledby="header43" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+        <div class="slds-modal__container">
+            <header class="slds-modal__header">
+                <h2 id="header43" class="slds-text-heading_medium">Enter Details</h2>
+                <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick="{!c.hidePopup}">
+                    <lightning:icon iconName="utility:close" size="small" alternativeText="Close"/>
+                </button>
+            </header>
+            <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                <label class="slds-form-element__label">Input 1:</label>
+                <div>
+                    <lightning:input type="text" value="{!v.input1}" class="slds-input" />
+                </div>
+                <label class="slds-form-element__label">Input 2:</label>
+                <div class="slds-form-element__control">
+                    <lightning:input type="text" value="{!v.input2}" class="slds-input" />
+                </div>
+                <label class="slds-form-element__label">Input 3:</label>
+                <div class="slds-form-element__control">
+                    <ui:inputSelect value="{!v.input3}" class="slds-select">
+                        <ui:inputSelectOption text="Option 1" value="1" />
+                        <ui:inputSelectOption text="Option 2" value="2" />
+                        <ui:inputSelectOption text="Option 3" value="3" />
+                    </ui:inputSelect>
+                </div>
+            </div>
+            <footer class="slds-modal__footer">
+                <button class="slds-button slds-button_neutral" onclick="{!c.hidePopup}">Cancel</button>
+                <button class="slds-button slds-button_brand" onclick="{!c.submitDetails}">Submit</button>
+            </footer>
+        </div>
+    </section>
+</aura:if>
+</aura:component>
